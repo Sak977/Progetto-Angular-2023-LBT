@@ -1,0 +1,33 @@
+<div class="container">
+  <div class="flex-h1-search">
+    <h1>Film più in evidenza</h1>
+    <div>
+      <input
+        (keydown.enter)="searchFilm()"
+        autocomplete="off"
+        type="text"
+        required
+        [(ngModel)]="ricerca"
+        id="user"
+        name="user"
+        placeholder="Cerca un film..."
+        aria-label="ricerca film"
+      />
+      <ng-icon name="ionSearch"> </ng-icon>
+      <!-- <button type="submit" (click)="searchFilm()"></button> -->
+    </div>
+  </div>
+
+  <div *ngIf="films.length > 0" class="grid-list-films">
+    <div *ngFor="let film of films">
+      <a [routerLink]="['/', 'catalogo', film.id]">
+        <img [src]="BASE_URL + 'w185' + film.poster_path" alt="film"
+      /></a>
+
+      <h3>{{ film.title }}</h3>
+      <p>{{ film.release_date | date }}</p>
+    </div>
+  </div>
+  <button class="carica-di-più" (click)="search()">Carica di più</button>
+</div>
+<h3 *ngIf="errorMessage">{{ errorMessage }}</h3>

@@ -1,0 +1,49 @@
+<form [formGroup]="model" id="login-2" name="login-2" (ngSubmit)="register()">
+  <div>
+    <input
+      formControlName="nome"
+      placeholder="Nome"
+      id="user-name"
+      type="text"
+    />
+    <div class="errore" *ngIf="model.controls.nome.hasError('required')">
+      Nome obbligatorio
+    </div>
+  </div>
+  <div>
+    <input
+      type="email"
+      id="user-2"
+      placeholder="Email"
+      aria-label="La tua email"
+      formControlName="email"
+    />
+    <div class="errore" *ngIf="model.controls.email.hasError('required')">
+      Email obbligatoria
+    </div>
+    <div class="errore" *ngIf="model.controls.email.hasError('pattern')">
+      Email non valida
+    </div>
+  </div>
+
+  <div>
+    <input
+      formControlName="password"
+      type="password"
+      id="pass-2"
+      placeholder="Password"
+      aria-label="La tua password"
+    />
+    <div class="errore" *ngIf="model.controls.password.hasError('required')">
+      Password obbligatoria
+    </div>
+    <div *ngIf="model.controls.password.hasError('pattern')">
+      Password sbagliata
+    </div>
+  </div>
+
+  <button type="submit" [disabled]="!model.valid">Registrati</button>
+
+  <!-- <a class="chiudi" routerLink="/">&times;</a> -->
+</form>
+<div *ngIf="errorMessage">{{ errorMessage }}</div>

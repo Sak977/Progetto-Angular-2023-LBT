@@ -1,0 +1,31 @@
+<div class="header-flex">
+  <a class="link-img" routerLink="/"
+    ><img class="header-img" src="/assets/img/logo.png" alt="logo Labtv"
+  /></a>
+
+  <nav>
+    <ul class="header-ul">
+      <li><a routerLink="/catalogo">Catalogo</a></li>
+      <ng-container *ngIf="!authService.isUserLogged">
+        <li>
+          <a routerLink="/login">Entra</a>
+        </li></ng-container
+      >
+
+      <li><a routerLink="/contatti">Contatti</a></li>
+      <ng-container *ngIf="authService.isUserLogged">
+        <button (click)="logout()">
+          Benvenuto {{ authService.getLoggedUser()!.user.nome }} (Esci)
+        </button>
+      </ng-container>
+      <li>
+        <a routerLink="/carrello"
+          ><ng-icon name="ionCart"> </ng-icon>
+          <span *ngIf="cs.lenghtPurchasedFilms > 0">{{
+            cs.lenghtPurchasedFilms
+          }}</span></a
+        >
+      </li>
+    </ul>
+  </nav>
+</div>

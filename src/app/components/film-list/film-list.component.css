@@ -1,0 +1,57 @@
+h1 {
+  margin: 60px 0;
+}
+.grid-list-films div {
+  padding: 6px;
+}
+
+.grid-list-films div h3 {
+  margin: 5px 0 3px 0;
+}
+
+.flex-h1-search {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.grid-list-films {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  row-gap: 40px;
+  justify-items: center;
+  /* padding: 50px; */
+  column-gap: 20px;
+}
+
+h1 + div {
+  display: flex;
+  padding: 10px;
+  background-color: white;
+  border-radius: 10px;
+}
+
+input {
+  font-size: 14px;
+  width: 250px;
+}
+
+ng-icon[name="ionSearch"] {
+  color: black;
+  font-size: 18px;
+}
+
+.carica-di-più {
+  width: 100%;
+  font-size: 20px;
+  color: #fff;
+  background-color: rgb(221, 0, 0);
+  cursor: pointer;
+  border-radius: 3px;
+  transition: 0.5s all;
+  padding: 15px;
+}
+
+.carica-di-più :hover {
+  background-color: rgb(167, 0, 0);
+}

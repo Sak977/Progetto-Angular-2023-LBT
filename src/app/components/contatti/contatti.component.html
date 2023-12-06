@@ -1,0 +1,90 @@
+<form class="contact-form" #laForm="ngForm" (ngSubmit)="contact()">
+  <div class="form-row-flex">
+    <label for="contact-form-name">Nome</label>
+    <input
+      [ngClass]="{ 'border-1': name.hasError('required') }"
+      #name="ngModel"
+      required
+      [(ngModel)]="model.name"
+      id="contact-form-name"
+      class="form-input"
+      type="text"
+      name="contact-form-name"
+    />
+  </div>
+  <div class="form-row-flex">
+    <label for="contact-form-nickname">Cognome</label>
+    <input
+      [ngClass]="{ 'border-1': nickname.hasError('required') }"
+      #nickname="ngModel"
+      required
+      [(ngModel)]="model.nickname"
+      id="contact-form-nickname"
+      class="form-input"
+      type="text"
+      name="contact-form-nickname"
+    />
+  </div>
+  <div class="form-row-flex">
+    <label for="contact-form-email">Email</label>
+    <input
+      [ngClass]="{
+        'border-1': email.hasError('required') || email.hasError('pattern')
+      }"
+      #email="ngModel"
+      required
+      [(ngModel)]="model.email"
+      pattern="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?"
+      id="contact-form-email"
+      class="form-input"
+      type="email"
+      name="contact-form-email"
+    />
+  </div>
+  <div class="form-row-flex">
+    <label for="contact-form-phone">Phone</label>
+    <input
+      [ngClass]="{ 'border-1': phone.hasError('required') }"
+      #phone="ngModel"
+      required
+      [(ngModel)]="model.phone"
+      id="contact-form-phone"
+      class="form-input"
+      type="tel"
+      name="contact-form-phone"
+    />
+  </div>
+  <div class="form-row-flex">
+    <label for="contact-form-message">Messaggo</label>
+    <textarea
+      [ngClass]="{ 'border-1': message.hasError('required') }"
+      #message="ngModel"
+      required
+      [(ngModel)]="model.message"
+      id="contact-form-message"
+      class="form-input"
+      name="contact-form-message"
+    ></textarea>
+  </div>
+  <div class="form-row-privacy">
+    <input
+      #privacy="ngModel"
+      [(ngModel)]="model.privacy"
+      type="checkbox"
+      name="privacy"
+      id="privacy"
+    />
+    <span
+      >Ho letto l'<a href="#">informativa sulla privacy</a> e accetto le
+      condizioni</span
+    >
+  </div>
+  <button
+    class="contact-form-btn"
+    type="submit"
+    [disabled]="!laForm.form.valid"
+  >
+    Invia
+  </button>
+  <!-- <a class="chiudi" routerLink="/">×</a> -->
+</form>

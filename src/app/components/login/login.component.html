@@ -1,0 +1,57 @@
+<form #laForm="ngForm" id="login" name="login" (ngSubmit)="login()">
+  <h2>Accedi</h2>
+
+  <div>
+    <input
+      #email="ngModel"
+      required
+      [(ngModel)]="model.email"
+      pattern="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?"
+      type="email"
+      id="user"
+      name="user"
+      placeholder="Email"
+      aria-label="La tua
+    email"
+    />
+    <div class="errore" *ngIf="email.hasError('required')">
+      Email obbligatoria
+    </div>
+    <div class="errore" *ngIf="email.hasError('pattern')">Email non valida</div>
+  </div>
+
+  <div>
+    <input
+      #password="ngModel"
+      required
+      [(ngModel)]="model.password"
+      pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_=+-]).{8,16}$"
+      type="password"
+      name="pass"
+      id="pass"
+      placeholder="Password"
+      aria-label="La tua password"
+    />
+    <div class="errore" *ngIf="password.hasError('required')">
+      Password obbligatoria
+    </div>
+    <div class="errore" *ngIf="password.hasError('pattern')">
+      Password non valida
+    </div>
+  </div>
+
+  <button type="submit" [disabled]="!laForm.form.valid">Entra</button>
+  <div class="flex-form-2">
+    <div class="flex-ricordaPass">
+      <input type="checkbox" name="ricordaPass" id="ricordaPass" />
+      <label for="ricordaPass">Ricorda password</label>
+    </div>
+    <!-- <a href="#">Crea un nuovo account</a> -->
+  </div>
+
+  <div class="register">
+    <span> Sei nuovo? </span><a routerLink="/register">Inizia qui.</a>
+  </div>
+
+  <!-- <a class="chiudi" routerLink="/">&times;</a> -->
+</form>

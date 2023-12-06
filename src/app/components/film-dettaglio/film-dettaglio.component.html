@@ -1,0 +1,66 @@
+<div *ngIf="film" class="div-film-dettaglio">
+  <div class="div-flex-film">
+    <img [src]="urlImageDettaglio" alt="film-dettaglio" />
+    <div class="film-dettaglio-1">
+      <h1>{{ film.title }}</h1>
+      <div class="film-dettaglio-1-features">
+        <span class="date">{{ film.release_date | date }}</span>
+        <div>
+          <span *ngFor="let film of film.genres">{{ film.name }}</span>
+        </div>
+        <span>{{ film.runtime | numberToTime }}</span>
+      </div>
+      <h3>Trama</h3>
+      <p>
+        {{ film.overview }}
+      </p>
+      <div class="div-regista">
+        <h4>Regista</h4>
+        <span>{{ film.credits.crew | findDirector }}</span>
+      </div>
+
+      <div>
+        <a
+          [routerLink]="['/', 'catalogo', 'film', 'video', film.id]"
+          class="btn-trailer"
+        >
+          <span>Guarda il trailer</span>
+        </a>
+        <button (click)="acquista()" class="btn-carrello">
+          <span>Aggiungi al carrello</span>
+        </button>
+      </div>
+    </div>
+  </div>
+  <div>
+    <h2 class="h2-class">Cast</h2>
+    <div class="grid-cast-consigliati">
+      <div class="grid-cast-div" *ngFor="let film of film.credits.cast">
+        <img
+          [src]="urlImage + 'w185' + film.profile_path"
+          alt="attore/personaggio"
+        />
+        <div>
+          <p>{{ film.name }}</p>
+          <span>{{ film.character }}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="grid-cast">
+    <h2 class="h2-class">Consigliati</h2>
+    <div class="grid-cast-consigliati">
+      <div class="grid-cast-div" *ngFor="let film of film.similar.results">
+        <img
+          class="img-cast-consigliati"
+          [src]="urlImage + 'w92' + film.poster_path"
+          alt="film consigliati"
+        />
+        <div>
+          <p>{{ film.title }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<router-outlet></router-outlet>

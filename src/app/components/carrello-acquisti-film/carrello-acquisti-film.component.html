@@ -1,0 +1,32 @@
+<div class="flex-ordine">
+  <div class="carrello-msg">
+    <h2>Il tuo Carrello.</h2>
+    <h3 *ngIf="films.length === 0">Carrello vuoto.</h3>
+    <p *ngIf="films.length === 0">{{ removeFilmMessage }}</p>
+  </div>
+  <div>
+    <p *ngIf="totale > 0">Totale provvisorio: {{ totale }}€</p>
+    <button *ngIf="totale > 0" type="button" class="btn-acquista">
+      Procedi all'ordine
+    </button>
+  </div>
+</div>
+
+<div *ngIf="films.length > 0" class="carrello">
+  <div class="list-group">
+    <div *ngFor="let f of films" class="list-group-item">
+      <img [src]="BASE_URL + 'w185' + f.pathFilm" alt="film-acquisto" />
+
+      <div>
+        <h3>{{ f.title }}</h3>
+        <p>{{ f.description }}</p>
+        <!-- <span>{{ f.qta }}</span> -->
+        <p>{{ f.price }}€</p>
+        <button class="btn-rimuovi" type="button" (click)="elimina(f.id)">
+          Rimuovi
+        </button>
+      </div>
+    </div>
+    <p *ngIf="removeFilmMessage && films.length > 0">{{ removeFilmMessage }}</p>
+  </div>
+</div>
